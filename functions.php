@@ -71,6 +71,7 @@ add_action( 'admin_bar_menu', 'remove_wp_nodes', 999 );
 // REMOVE POST META BOXES
 function remove_my_post_metaboxes() {
 if( !current_user_can('manage_options')){
+
 remove_meta_box( 'presentationdiv','slides','side' ); // Author Metabox
 remove_meta_box( 'pageparentdiv','slides','side' ); // Comments Status Metabox
 remove_meta_box( 'slide-settings','slides','normal' ); // Comments Metabox
