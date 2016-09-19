@@ -50,9 +50,10 @@ function remove_menus(){
   remove_menu_page( 'users.php' );				//Users
   remove_menu_page( 'tools.php' );				//Tools
   remove_menu_page( 'options-general.php' );		//Settings
+  remove_menu_page( 'admin.php?page=threewp_broadcast' );    //Broadcast Menu
 } 
 }
-add_action( 'admin_menu', 'remove_menus' );
+add_action( 'admin_menu', 'remove_menus', 999);
 
 
 function remove_wp_nodes(){
@@ -70,10 +71,20 @@ add_action( 'admin_bar_menu', 'remove_wp_nodes', 999 );
 // REMOVE POST META BOXES
 function remove_my_post_metaboxes() {
 if( !current_user_can('manage_options')){
-remove_meta_box( 'presentationdiv','slide','side' ); // Author Metabox
-remove_meta_box( 'pageparentdiv','slide','side' ); // Comments Status Metabox
-remove_meta_box( 'slide-settings','slide','normal' ); // Comments Metabox
-remove_meta_box( 'postimagediv','slide','side' ); // Custom Fields Metabox
+remove_meta_box( 'presentationdiv','slides','side' ); // Author Metabox
+remove_meta_box( 'pageparentdiv','slides','side' ); // Comments Status Metabox
+remove_meta_box( 'slide-settings','slides','normal' ); // Comments Metabox
+remove_meta_box( 'postimagediv','slides','side' ); // Custom Fields Metabox
 }
 }
 add_action('do_meta_boxes','remove_my_post_metaboxes');
+
+// display custom admin notice
+function hwdsbpres_custom_admin_notice() { ?>
+	
+	<div class="notice notice-success">
+		<p><?php _e('If you are creating a new slide, click the Pres. Slides/Add New menu on the left', 'hwdsbpres'); ?></p>
+	</div>
+	
+<?php }
+add_action('admin_notices', 'hwdsbpres_custom_admin_notice');
