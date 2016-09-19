@@ -40,6 +40,8 @@ add_action( 'admin_init', 'remove_dashboard_meta' );
     }
     add_action( 'save_post', 'set_default_object_terms', 0, 2 );
 
+// Let's hide some things from the Authors so the interface is nice and simple
+
 function remove_menus(){
   if( !current_user_can('manage_options')){
   remove_menu_page( 'index.php' );				//Dashboard
@@ -50,7 +52,7 @@ function remove_menus(){
   remove_menu_page( 'users.php' );				//Users
   remove_menu_page( 'tools.php' );				//Tools
   remove_menu_page( 'options-general.php' );		//Settings
-  remove_menu_page( 'admin.php?page=threewp_broadcast' );    //Broadcast Menu
+  remove_menu_page( 'admin.php?page=threewp_broadcast' );    //Broadcast Menu (todo: why doesn't this work)
 } 
 }
 add_action( 'admin_menu', 'remove_menus', 999);
@@ -68,7 +70,7 @@ function remove_wp_nodes(){
 }
 add_action( 'admin_bar_menu', 'remove_wp_nodes', 999 );
 
-// REMOVE POST META BOXES
+// No need to mess with these settings. They are all getting automagically set by plugins and such.
 function remove_my_post_metaboxes() {
 if( !current_user_can('manage_options')){
 
@@ -80,7 +82,7 @@ remove_meta_box( 'postimagediv','slides','side' ); // Custom Fields Metabox
 }
 add_action('do_meta_boxes','remove_my_post_metaboxes');
 
-// display custom admin notice
+// display custom admin notice, just in case users end up in the dashboard and lose their way
 function hwdsbpres_custom_admin_notice() { ?>
 	
 	<div class="notice notice-success">
