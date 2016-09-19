@@ -70,10 +70,10 @@ add_action( 'admin_bar_menu', 'remove_wp_nodes', 999 );
 // REMOVE POST META BOXES
 function remove_my_post_metaboxes() {
 if( !current_user_can('manage_options')){
-remove_meta_box( 'presentationdiv','slide','side' ); // Presentation Metabox
-remove_meta_box( 'pageparentdiv','slide','side' ); // Attribute Metabox
-remove_meta_box( 'slide-settings','slide','normal' ); // Slide Settings Metabox
-remove_meta_box( 'postimagediv','slide','side' ); // Featured Image Metabox
+remove_meta_box( 'presentationdiv','slides','side' ); // Presentation Metabox
+remove_meta_box( 'pageparentdiv','slides','side' ); // Attribute Metabox
+remove_meta_box( 'slide-settings','slides','normal' ); // Slide Settings Metabox
+remove_meta_box( 'postimagediv','slides','side' ); // Featured Image Metabox
 }
 }
 add_action('do_meta_boxes','remove_my_post_metaboxes');
